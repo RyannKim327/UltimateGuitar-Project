@@ -1,0 +1,22 @@
+{
+  "name": "ultimate-guitar",
+  "version": "1.0.2-test-2",
+  "description": "A scrape version of tabs.ultimate-guitar.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "guitar",
+    "ultimate guitar tabs",
+    "guitar chords",
+    "guitar tabs"
+  ],
+  "author": "RyannKim327",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.12"
+  },
+  "devDependencies": {}
+}
