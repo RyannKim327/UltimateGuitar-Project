@@ -1,10 +1,10 @@
 {
   "name": "ultimate-guitar",
-  "version": "1.0.2-test-2",
+  "version": "1.0.3",
   "description": "A scrape version of tabs.ultimate-guitar.com",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test"
   },
   "keywords": [
     "guitar",
@@ -18,5 +18,13 @@
     "axios": "^0.27.2",
     "cheerio": "^1.0.0-rc.12"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RyannKim327/UltimateGuitar-Project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RyannKim327/UltimateGuitar-Project/issues"
+  },
+  "homepage": "https://github.com/RyannKim327/UltimateGuitar-Project#readme"
 }
