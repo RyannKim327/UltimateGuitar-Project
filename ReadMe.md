@@ -17,10 +17,11 @@
 
 ### Sample code (First data gathered)
 ``` nodejs
-const tabs = require("ultimate-guitar")
+const UltimateGuitar = require("ultimate-guitar")
 
 let do_it = async () => {
-	let data = await tabs.firstData("song title")
+	const guitar = new UltimateGuitar()
+	const data = await guitar.fetch_data(UltimateGuitar.FIRST)
 	console.log(data)
 }
 do_it()
@@ -30,10 +31,11 @@ do_it()
 
 ### Sample code (Random data gathered)
 ``` nodejs
-const tabs = require("ultimate-guitar")
+const UltimateGuitar = require("ultimate-guitar")
 
 let do_it = async () => {
-	let data = await tabs.randomData("song title")
+	const guitar = new UltimateGuitar()
+	const data = await guitar.fetch_data(UltimateGuitar.RANDOM)
 	console.log(data)
 }
 do_it()
@@ -54,15 +56,17 @@ do_it()
 ---
 
 ### Sample Code (All Data)
-```NodeJS
-const tabs = require("ultimate-guitar")
+``` nodejs
+const UltimateGuitar = require("ultimate-guitar")
 
 let do_it = async () => {
-	let data = await tabs.allData("song title")
+	const guitar = new UltimateGuitar()
+	const data = await guitar.fetch_data()
 	console.log(data)
 }
 do_it()
 ```
+
 
 ### Output (Sample)
 ``` JSON
@@ -77,21 +81,21 @@ do_it()
 
 ---
 
-### Sample Code (getChords)
-```NodeJS
-const tabs = require("ultimate-guitar")
+### Sample Code (get_chords)
+``` nodejs
+const UltimateGuitar = require("ultimate-guitar")
 
 let do_it = async () => {
-	let data = await tabs.getChords("song url")
+	const data = await guitar.get_chords("https://tabs.ultimate-guitar.com/tab/i-belong-to-the-zoo/sana-chords-2405013")
 	console.log(data)
 }
 do_it()
 ```
 
+
 ### Output (Success)
 ``` JSON
 {
-  "resultCode": 200,
   "song_name": "Song Name",
   "artist_name": "Artist",
   "type": "Chords, Tabs, Base or any related instrument",
@@ -105,8 +109,7 @@ do_it()
 ### Output (Error)
 ``` JSON
 {
-  "resultCode": 404,
-  "message": "Error message"
+  "error": "Error message"
 }
 ```
 
@@ -123,3 +126,6 @@ do_it()
 8. Mark Kevin Manalo
 9. Freecodecamp
 10. Tutorialspoint
+
+### Additional details
+> The changes regarding to this package was suggested by Mr. Gem Rey Rañola, one of my colleagues in our local college.
