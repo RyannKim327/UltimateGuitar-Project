@@ -21,6 +21,7 @@ const UltimateGuitar = require("ultimate-guitar")
 
 let do_it = async () => {
 	const guitar = new UltimateGuitar()
+	await guitar.init("your love") // Required for you to search a song
 	const data = await guitar.fetch_data(UltimateGuitar.FIRST)
 	console.log(data)
 }
@@ -35,6 +36,7 @@ const UltimateGuitar = require("ultimate-guitar")
 
 let do_it = async () => {
 	const guitar = new UltimateGuitar()
+	await guitar.init("your love") // Required for you to search a song
 	const data = await guitar.fetch_data(UltimateGuitar.RANDOM)
 	console.log(data)
 }
@@ -61,6 +63,7 @@ const UltimateGuitar = require("ultimate-guitar")
 
 let do_it = async () => {
 	const guitar = new UltimateGuitar()
+	await guitar.init("your love") // Required for you to search a song
 	const data = await guitar.fetch_data()
 	console.log(data)
 }
