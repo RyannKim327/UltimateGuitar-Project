@@ -8,7 +8,7 @@ import { error_, log_ } from "./utils/logs";
 // TODO: To create a Method for result count release
 // export const FIRST_RESULT: METHOD_RESULT = "first_result";
 // export const RANDOM_RESULT: METHOD_RESULT = "random_results";
-// export const ALL_RESULTS: METHOD_RESULT = "all_results"
+// export const ALL_RESULTS: METHOD_RESULT = "all_results";
 
 // TODO: To filter out all the content by category
 export const VIDEO: CATEGORY = 100;
@@ -34,7 +34,7 @@ export async function searchSong(
    * category: CATEGORY [This optional parameter uses customized parameter, which is also inside of the project]
    */
 
-  let request_result = ALL_RESULTS;
+  // let request_result = ALL_RESULTS;
   let type: string = "&view_state=advanced";
 
   if (category) {
