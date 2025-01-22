@@ -1,8 +1,8 @@
 {
   "name": "ultimate-guitar",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A scrape version of tabs.ultimate-guitar.com",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "tsx test"
   },

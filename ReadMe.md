@@ -2,121 +2,61 @@
 #### Ryann Kim Sesgundo
 
 ---
-
-### Disclaimer
-> I didn't own the entire code, which is actually came from Lester Navarra, the one who taught me how to scrape this website.
-
----
-
-### What's new!!!
-1. Added URL for random and first data
-2. Added all data
-3. Added get chords for customized URL
+### Introduction
+> The project is not written in typescript, some function and use was changed by the developer.
 
 ---
+### .searchSong(title: string, artist?: string|null, category?: CATEGORY[import from the package])
+```NodeJs
+// Here's the sample code
+const {searchSong} = require("ultimate-guitar")
 
-### Sample code (First data gathered)
-``` nodejs
-const UltimateGuitar = require("ultimate-guitar")
+(async function(){
+	const result = await searchSong("Hello")
+	console.log(result)
+})
 
-let do_it = async () => {
-	const guitar = new UltimateGuitar()
-	await guitar.init("your love") // Required for you to search a song
-	const data = await guitar.fetch_data(UltimateGuitar.FIRST)
-	console.log(data)
-}
-do_it()
+// INFO: You may also use this format
+
+const {searchSong, CHORDS} = require("ultimate-guitar")
+(async function(){
+	const result = await searchSong("Hello", "Adele", CHORDS)
+	// OR
+	const result = await searchSong("Hello", null, CHORDS)
+})
+
 ```
 
----
+### .fetchChords(url_or_response: string|GuitarTabs)
+```NodeJs
+// Here's the sample code
+const {searchSong, fetchChords} = require("ultimate-guitar")
 
-### Sample code (Random data gathered)
-``` nodejs
-const UltimateGuitar = require("ultimate-guitar")
+(async function(){
+	const result = await searchSong("Hello")
+	const g = await fetchChords(result.responses[0])
+	console.log(q)
+})
 
-let do_it = async () => {
-	const guitar = new UltimateGuitar()
-	await guitar.init("your love") // Required for you to search a song
-	const data = await guitar.fetch_data(UltimateGuitar.RANDOM)
-	console.log(data)
-}
-do_it()
-```
+// OR
 
-### Output (Sample)
-``` JSON
-{
-	"title": "Song Title",
-	"artist": "Artist/Band name",
-	"key": "Sample Key",
-	"type": "Chords/Tabs",
-	"url": "Url Link",
-	"chords": "Chords Gathered"
-}
+const {searchSong, fetchChords} = require("ultimate-guitar")
+
+(async function(){
+	const result = await searchSong("Hello")
+	const g = await fetchChords(
+    "https://tabs.ultimate-guitar.com/tab/adele/hello-chords-1775924",
+  );
+  console.log(q);
+
 ```
 
 ---
-
-### Sample Code (All Data)
-``` nodejs
-const UltimateGuitar = require("ultimate-guitar")
-
-let do_it = async () => {
-	const guitar = new UltimateGuitar()
-	await guitar.init("your love") // Required for you to search a song
-	const data = await guitar.fetch_data()
-	console.log(data)
-}
-do_it()
-```
-
-
-### Output (Sample)
-``` JSON
-{
-	"title": "Song Title",
-	"artist": "Artist/Band name",
-	"key": "Sample Key",
-	"type": "Chords/Tabs",
-	"url": "Url Link"
-}
-```
+### Status
+> The program returns `two status code`, either `200` or `404`. Basically the 200 response is success and 404 is not found or error.
+Bugs and errors are still expected to this project, but still trying to improve it and make the error lesser or can handle by the program.
 
 ---
-
-### Sample Code (get_chords)
-``` nodejs
-const UltimateGuitar = require("ultimate-guitar")
-
-let do_it = async () => {
-	const data = await guitar.get_chords("https://tabs.ultimate-guitar.com/tab/i-belong-to-the-zoo/sana-chords-2405013")
-	console.log(data)
-}
-do_it()
-```
-
-
-### Output (Success)
-``` JSON
-{
-  "song_name": "Song Name",
-  "artist_name": "Artist",
-  "type": "Chords, Tabs, Base or any related instrument",
-  "rating": 3.14,
-  "tonality_name": "Key",
-  "username": "The one who upload.",
-  "chords": "chords here"
-}
-```
-
-### Output (Error)
-``` JSON
-{
-  "error": "Error message"
-}
-```
-
-> Bugs and errors are still expected to this project, but still trying to improve it and make the error lesser or can handle by the program.
 
 ### Credits
 1. Lester Navarra
@@ -130,5 +70,3 @@ do_it()
 9. Freecodecamp
 10. Tutorialspoint
 
-### Additional details
-> The changes regarding to this package was suggested by Mr. Gem Rey Rañola, one of my colleagues in our local college.
