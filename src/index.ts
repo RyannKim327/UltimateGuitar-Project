@@ -1,5 +1,5 @@
 import axios from "axios";
-import cheerio from "cheerio";
+import * as cheerio from "cheerio";
 
 import { GuitarTabs, CATEGORY } from "./utils/interfaces";
 
@@ -20,10 +20,14 @@ const DRUMS = 700;
 const UKALELE = 800;
 
 const CATEGORIES: CATEGORY[] = [
-  VIDEO, TAB, CHORDS,
-  BASS, POWER, DRUMS,
-  UKALELE
-]
+  VIDEO,
+  TAB,
+  CHORDS,
+  BASS,
+  POWER,
+  DRUMS,
+  UKALELE,
+];
 
 async function searchSong(
   title: string,
@@ -41,8 +45,8 @@ async function searchSong(
    */
 
   if (typeof artist === "number" && CATEGORIES.includes(artist)) {
-    category = artist
-    artist = undefined
+    category = artist;
+    artist = undefined;
   }
 
   // let request_result = ALL_RESULTS;
@@ -92,8 +96,8 @@ async function searchSong(
     }
 
     return {
-      status: (value.length > 0) ? 200 : 500,
-      responses: (value.length > 0) ? value : "No results found",
+      status: value.length > 0 ? 200 : 500,
+      responses: value.length > 0 ? value : "No results found",
     };
   }
 
