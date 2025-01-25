@@ -1,7 +1,7 @@
 import axios from "axios";
 import cheerio from "cheerio";
 
-import { GuitarTabs, CATEGORY, METHOD_RESULT } from "./utils/interfaces";
+import { GuitarTabs, CATEGORY } from "./utils/interfaces";
 
 import { error_, log_ } from "./utils/logs";
 
@@ -11,17 +11,23 @@ import { error_, log_ } from "./utils/logs";
 // export const ALL_RESULTS: METHOD_RESULT = "all_results";
 
 // TODO: To filter out all the content by category
-export const VIDEO: CATEGORY = 100;
-export const TAB: CATEGORY = 200;
-export const CHORDS: CATEGORY = 300;
-export const BASS: CATEGORY = 400;
-export const POWER: CATEGORY = 600;
-export const DRUMS: CATEGORY = 700;
-export const UKALELE: CATEGORY = 800;
+const VIDEO = 100;
+const TAB = 200;
+const CHORDS = 300;
+const BASS = 400;
+const POWER = 600;
+const DRUMS = 700;
+const UKALELE = 800;
 
-export async function searchSong(
+const CATEGORIES: CATEGORY[] = [
+  VIDEO, TAB, CHORDS,
+  BASS, POWER, DRUMS,
+  UKALELE
+]
+
+async function searchSong(
   title: string,
-  artist?: string | null,
+  artist?: string | number | null,
   category?: CATEGORY,
 ): Promise<{
   status: number;
@@ -34,10 +40,15 @@ export async function searchSong(
    * category: CATEGORY [This optional parameter uses customized parameter, which is also inside of the project]
    */
 
+  if (typeof artist === "number" && CATEGORIES.includes(artist)) {
+    category = artist
+    artist = undefined
+  }
+
   // let request_result = ALL_RESULTS;
   let type: string = "&view_state=advanced";
 
-  if (category) {
+  if (category !== null || category !== undefined) {
     type = `&type=${category}`;
   }
 
@@ -45,13 +56,14 @@ export async function searchSong(
     .get(
       `https://www.ultimate-guitar.com/search.php?title=${encodeURI(title)}${type}`,
     )
-    .then((response) => {
+    .then((response: any) => {
       return response.data;
     })
-    .catch((err) => {
+    .catch((err: any) => {
       error_("Search", err);
       return null;
     });
+
   if (data === null) {
     log_(
       "Search",
@@ -72,7 +84,7 @@ export async function searchSong(
       return per.marketing_type === undefined;
     });
 
-    if (artist) {
+    if (typeof artist === "string") {
       const art = new RegExp(artist, "gi");
       value = value.filter((per: GuitarTabs) => {
         return per.artist_name && art.test(per.artist_name);
@@ -80,19 +92,19 @@ export async function searchSong(
     }
 
     return {
-      status: 200,
-      responses: value,
+      status: (value.length > 0) ? 200 : 500,
+      responses: (value.length > 0) ? value : "No results found",
     };
   }
 
   // TODO: To throw a error result
   return {
     status: 404,
-    responses: "No result found",
+    responses: "There are some error in fetching the datas",
   };
 }
 
-export async function fetchChords(url_or_response: string | GuitarTabs) {
+async function fetchChords(url_or_response: string | GuitarTabs) {
   /*
    * INFO: Here's the parameters and their ddescription/use
    * url_or_response: string|GuitarTabs
@@ -101,19 +113,24 @@ export async function fetchChords(url_or_response: string | GuitarTabs) {
    */
   let url: string = "";
 
-  if (typeof url === "string") {
+  if (typeof url_or_response === "string") {
     url = url_or_response;
   }
-  if (url_or_response.tab_url) {
+
+  if (
+    typeof url_or_response === "object" &&
+    url_or_response !== null &&
+    "tab_url" in url_or_response
+  ) {
     url = url_or_response.tab_url;
   }
 
   const data = await axios
     .get(url)
-    .then((response) => {
+    .then((response: any) => {
       return response.data;
     })
-    .catch((error) => {
+    .catch((error: any) => {
       error_("Fetch Chords", error);
       return {
         status: 404,
@@ -140,3 +157,15 @@ export async function fetchChords(url_or_response: string | GuitarTabs) {
     };
   }
 }
+
+export {
+  searchSong,
+  fetchChords,
+  VIDEO,
+  TAB,
+  CHORDS,
+  BASS,
+  POWER,
+  DRUMS,
+  UKALELE,
+};

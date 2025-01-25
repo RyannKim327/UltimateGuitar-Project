@@ -25,6 +25,13 @@ const {searchSong, CHORDS} = require("ultimate-guitar")
 	const result = await searchSong("Hello", null, CHORDS)
 })
 
+// NOTE: You may now use the category without having artist
+const {searchSong, CHORDS} = require("ultimate-guitar")
+(async function(){
+	const result = await searchSong("Hello", CHORDS)
+})
+
+
 ```
 
 ### .fetchChords(url_or_response: string|GuitarTabs)
@@ -53,7 +60,7 @@ const {searchSong, fetchChords} = require("ultimate-guitar")
 
 ---
 ### Status
-> The program returns `two status code`, either `200` or `404`. Basically the 200 response is success and 404 is not found or error.
+> The program returns `three status code`, either `200`, `404` or `500`. Basically the 200 response is success and 404 is not found or error and 500 turns as server error.
 Bugs and errors are still expected to this project, but still trying to improve it and make the error lesser or can handle by the program.
 
 ---
@@ -69,4 +76,4 @@ Bugs and errors are still expected to this project, but still trying to improve 
 8. Mark Kevin Manalo
 9. Freecodecamp
 10. Tutorialspoint
-
+11. Roderick Alcantara

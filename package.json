@@ -1,9 +1,12 @@
 {
   "name": "ultimate-guitar",
-  "version": "2.0.1-ts",
+  "version": "2.0.1",
   "description": "A scrape version of tabs.ultimate-guitar.com",
-  "main": "index.ts",
+  "main": "dist/index.js",
+  "module": "NodeNext",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "build": "tsc",
     "test": "tsx test"
   },
   "keywords": [
@@ -12,6 +15,9 @@
     "guitar chords",
     "guitar tabs"
   ],
+  "files": [
+    "dist"
+  ],
   "author": "RyannKim327",
   "license": "ISC",
   "dependencies": {
@@ -19,6 +25,8 @@
     "cheerio": "^1.0.0-rc.12"
   },
   "devDependencies": {
+    "@types/node": "^22.10.10",
+    "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   },
   "repository": {
