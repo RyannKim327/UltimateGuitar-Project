@@ -36,5 +36,8 @@
   "bugs": {
     "url": "https://github.com/RyannKim327/UltimateGuitar-Project/issues"
   },
-  "homepage": "https://github.com/RyannKim327/UltimateGuitar-Project#readme"
+  "homepage": "https://github.com/RyannKim327/UltimateGuitar-Project#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
 }
