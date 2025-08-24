@@ -21,7 +21,7 @@
   "author": "RyannKim327",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.27.2",
+    "axios": "^1.11.0",
     "cheerio": "^1.0.0-rc.12"
   },
   "devDependencies": {
