@@ -2,6 +2,16 @@
 
 A Node.js package for scraping guitar tabs, chords, and other musical content from Ultimate Guitar.
 
+## Category
+
+**Music & Audio** - Guitar Tabs & Chords Scraper
+
+This package falls under the music and audio category, specifically designed for:
+- 🎸 Guitar enthusiasts and musicians
+- 🎵 Music education and learning
+- 📝 Tab and chord collection tools
+- 🔍 Music content aggregation
+
 ## Installation
 
 ```bash
@@ -11,7 +21,7 @@ npm install ultimate-guitar
 ## Quick Start
 
 ```javascript
-const { searchSong, fetchChords, CATEGORIES } = require('ultimate-guitar');
+const { searchSong, fetchChords, category } = require('ultimate-guitar');
 
 // Search for a song
 searchSong('Hello', 'Adele').then(result => {
@@ -63,23 +73,23 @@ const { searchSong } = require('ultimate-guitar');
 
 **Search with category filter:**
 ```javascript
-const { searchSong, CATEGORIES } = require('ultimate-guitar');
+const { searchSong, category } = require('ultimate-guitar');
 
 (async function() {
   // Search for chords only
-  const result = await searchSong('Hello', 'Adele', CATEGORIES.CHORDS);
+  const result = await searchSong('Hello', 'Adele', category.CHORDS);
   console.log(result);
 })();
 ```
 
 **Search with category but without artist:**
 ```javascript
-const { searchSong, CATEGORIES } = require('ultimate-guitar');
+const { searchSong, category } = require('ultimate-guitar');
 
 (async function() {
-  const result = await searchSong('Hello', null, CATEGORIES.CHORDS);
+  const result = await searchSong('Hello', null, category.CHORDS);
   // OR
-  const result2 = await searchSong('Hello', CATEGORIES.CHORDS);
+  const result2 = await searchSong('Hello', category.CHORDS);
   console.log(result);
 })();
 ```
@@ -219,7 +229,7 @@ const { searchSong } = require('ultimate-guitar');
 This package includes TypeScript definitions. Import types as needed:
 
 ```typescript
-import { searchSong, fetchChords, CATEGORIES, GuitarTabs } from 'ultimate-guitar';
+import { searchSong, fetchChords, category, GuitarTabs } from 'ultimate-guitar';
 
 const result: SearchResponse = await searchSong('Hello', 'Adele');
 ```

@@ -6,7 +6,7 @@ import * as cheerio from "cheerio";
 
 export default async function searchSong(
   title: string,
-  artist?: string | number | null,
+  artist?: string | number | CATEGORY | null,
   category?: CATEGORY,
 ): Promise<{
   status: number;
