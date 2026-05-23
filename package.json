@@ -1,7 +1,8 @@
 {
   "name": "ultimate-guitar",
-  "version": "2.0.6",
+  "version": "3.0.0",
   "description": "A scrape version of tabs.ultimate-guitar.com",
+  "type": "module",
   "main": "dist/index.js",
   "module": "NodeNext",
   "types": "dist/index.d.ts",
@@ -21,13 +22,13 @@
   "author": "RyannKim327",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.13.3",
-    "cheerio": "^1.2.0"
+    "cheerio": "^1.2.0",
+    "got-scraping": "^4.2.1"
   },
   "devDependencies": {
-    "@types/node": "^25.0.10",
+    "@types/node": "^25.9.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   },
   "repository": {
     "type": "git",

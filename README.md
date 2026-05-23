@@ -18,15 +18,14 @@ This package falls under the music and audio category, specifically designed for
 npm install ultimate-guitar
 ```
 
-## Quick Start
+## Quick Start (ES Modules)
 
 ```javascript
-const { searchSong, fetchChords, category } = require('ultimate-guitar');
+import { searchSong, fetchChords, category } from 'ultimate-guitar';
 
 // Search for a song
-searchSong('Hello', 'Adele').then(result => {
-  console.log(result);
-});
+const result = await searchSong('Hello', 'Adele');
+console.log(result);
 ```
 
 ## API Reference
@@ -53,45 +52,37 @@ Search for songs on Ultimate Guitar.
 
 **Basic search:**
 ```javascript
-const { searchSong } = require('ultimate-guitar');
+import { searchSong } from 'ultimate-guitar';
 
-(async function() {
-  const result = await searchSong('Hello');
-  console.log(result);
-})();
+const result = await searchSong('Hello');
+console.log(result);
 ```
 
 **Search with artist:**
 ```javascript
-const { searchSong } = require('ultimate-guitar');
+import { searchSong } from 'ultimate-guitar';
 
-(async function() {
-  const result = await searchSong('Hello', 'Adele');
-  console.log(result);
-})();
+const result = await searchSong('Hello', 'Adele');
+console.log(result);
 ```
 
 **Search with category filter:**
 ```javascript
-const { searchSong, category } = require('ultimate-guitar');
+import { searchSong, category } from 'ultimate-guitar';
 
-(async function() {
-  // Search for chords only
-  const result = await searchSong('Hello', 'Adele', category.CHORDS);
-  console.log(result);
-})();
+// Search for chords only
+const result = await searchSong('Hello', 'Adele', category.CHORDS);
+console.log(result);
 ```
 
 **Search with category but without artist:**
 ```javascript
-const { searchSong, category } = require('ultimate-guitar');
+import { searchSong, category } from 'ultimate-guitar';
 
-(async function() {
-  const result = await searchSong('Hello', null, category.CHORDS);
-  // OR
-  const result2 = await searchSong('Hello', category.CHORDS);
-  console.log(result);
-})();
+const result = await searchSong('Hello', null, category.CHORDS);
+// OR
+const result2 = await searchSong('Hello', category.CHORDS);
+console.log(result);
 ```
 
 ### fetchChords(url_or_response)
@@ -105,25 +96,23 @@ Fetch the actual chord/tab content from a search result.
 
 **Using search result object:**
 ```javascript
-const { searchSong, fetchChords } = require('ultimate-guitar');
+import { searchSong, fetchChords } from 'ultimate-guitar';
 
-(async function() {
-  const searchResult = await searchSong('Hello', 'Adele');
+const searchResult = await searchSong('Hello', 'Adele');
+if (searchResult.status === 200) {
   const chords = await fetchChords(searchResult.responses[0]);
   console.log(chords);
-})();
+}
 ```
 
 **Using direct URL:**
 ```javascript
-const { fetchChords } = require('ultimate-guitar');
+import { fetchChords } from 'ultimate-guitar';
 
-(async function() {
-  const chords = await fetchChords(
-    'https://tabs.ultimate-guitar.com/tab/adele/hello-chords-1775924'
-  );
-  console.log(chords);
-})();
+const chords = await fetchChords(
+  'https://tabs.ultimate-guitar.com/tab/adele/hello-chords-1775924'
+);
+console.log(chords);
 ```
 
 ## Response Format
@@ -210,18 +199,16 @@ The API returns standard HTTP status codes:
 ## Error Handling
 
 ```javascript
-const { searchSong } = require('ultimate-guitar');
+import { searchSong } from 'ultimate-guitar';
 
-(async function() {
-  try {
-    const result = await searchSong('NonexistentSong');
-    if (result.status === 404) {
-      console.log('Song not found');
-    }
-  } catch (error) {
-    console.error('Error:', error.message);
+try {
+  const result = await searchSong('NonexistentSong');
+  if (result.status === 404) {
+    console.log('Song not found');
   }
-})();
+} catch (error) {
+  console.error('Error:', error.message);
+}
 ```
 
 ## TypeScript Support
@@ -231,10 +218,15 @@ This package includes TypeScript definitions. Import types as needed:
 ```typescript
 import { searchSong, fetchChords, category, GuitarTabs } from 'ultimate-guitar';
 
-const result: SearchResponse = await searchSong('Hello', 'Adele');
+const result = await searchSong('Hello', 'Adele');
 ```
 
 ## Changelog
+
+### Version 3.0.0 (May 23, 2026)
+- **Breaking Change**: Switched project to ES Modules (ESM). Node.js 16+ is now required.
+- **Bot Challenge Fix**: Replaced `axios` with `got-scraping` to bypass Cloudflare bot protection.
+- Improved reliability of network requests using browser-mimicking TLS fingerprints.
 
 ### Version 2.0.5 (January 26, 2026)
 - Updated dependencies for better security
