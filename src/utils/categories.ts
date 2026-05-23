@@ -6,7 +6,7 @@ const CHORDS = 300;
 const BASS = 400;
 const POWER = 600;
 const DRUMS = 700;
-const UKALELE = 800;
+const UKULELE = 800;
 
 const CATEGORIES: CATEGORY[] = [
   VIDEO,
@@ -15,9 +15,9 @@ const CATEGORIES: CATEGORY[] = [
   BASS,
   POWER,
   DRUMS,
-  UKALELE,
+  UKULELE,
 ];
 
 export default CATEGORIES;
 
-export { VIDEO, TAB, CHORDS, BASS, POWER, DRUMS, UKALELE };
+export { VIDEO, TAB, CHORDS, BASS, POWER, DRUMS, UKULELE };

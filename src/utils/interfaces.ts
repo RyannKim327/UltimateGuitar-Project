@@ -19,22 +19,31 @@ export interface GuitarTabs {
   tab_access_type: string;
   tp_version: number;
   tonality_name: string;
-  version_description: string;
+  version_description: string | null;
   verified: number;
   recording: {
-    is_accoustic: number;
+    is_acoustic: number;
     tonality_name: string;
     performance: unknown | null;
-    recording_artists: unknown;
-    video_urls: unknown | null;
+    recording_artists: unknown[];
+    video_urls: string[] | null;
+    album_id?: number | null;
   };
   album_cover: {
     has_album_cover: boolean;
-    web_album_cover: unknown;
+    web_album_cover: {
+      small: string;
+      medium?: string;
+      large?: string;
+    } | null;
   };
   artist_cover: {
     has_artist_cover: boolean;
-    web_artist_cover: unknown;
+    web_artist_cover: {
+      small: string;
+      medium?: string;
+      large?: string;
+    } | null;
   };
   artist_url: string;
   tab_url: string;
