@@ -19,10 +19,13 @@ npm install ultimate-guitar
 ## Quick Start (ES Modules)
 
 ```javascript
-import { searchSong, fetchChords, category } from 'ultimate-guitar';
+import { guitar } from 'ultimate-guitar';
+
+// Setting up
+const ug = guitar()
 
 // Search for a song
-const result = await searchSong('Hello', 'Adele');
+const result = await search('Hello', 'Adele');
 console.log(result);
 ```
 
@@ -37,7 +40,7 @@ const result = await ug.search('Hello', 'Adele');
 
 ## API Reference
 
-### `searchSong(title, artist?, category?)`
+### `search(title, artist?, category?)`
 
 Search for songs on Ultimate Guitar.
 
@@ -59,22 +62,27 @@ Search for songs on Ultimate Guitar.
 
 **Basic search:**
 ```javascript
-const result = await searchSong('Hello');
+const { guitar } = require("ultimate-guitar")
+const ug = guitar()
+const result = await search('Hello');
 ```
 
 **Search with artist:**
 ```javascript
-const result = await searchSong('Hello', 'Adele');
+const { guitar } = require("ultimate-guitar")
+const ug = guitar()
+const result = await search('Hello', 'Adele');
 ```
 
 **Search with category filter:**
 ```javascript
-import { searchSong, category } from 'ultimate-guitar';
+import { guitar } from 'ultimate-guitar';
+const ug = guitar()
 
-const result = await searchSong('Hello', 'Adele', category.CHORDS);
+const result = await ug.search('Hello', 'Adele', ug.category.CHORDS);
 ```
 
-### `fetchChords(url_or_response)`
+### `fetch(url_or_response)`
 
 Fetch the actual chord/tab content from a search result.
 
@@ -84,9 +92,12 @@ Fetch the actual chord/tab content from a search result.
 #### Usage Examples
 
 ```javascript
-const searchResult = await searchSong('Hello', 'Adele');
+const { guitar } = require("ultimate-guitar")
+
+const ug = guitar()
+const searchResult = await ug.search('Hello', 'Adele');
 if (searchResult.status === 200) {
-  const chords = await fetchChords(searchResult.responses[0]);
+  const chords = await ug.fetch(searchResult.responses[0]);
   console.log(chords.response);
 }
 ```
