@@ -1,7 +1,7 @@
-import axios from "axios";
+import { gotScraping } from "got-scraping";
 import * as cheerio from "cheerio";
-import { error_ } from "../utils/logs";
-import { GuitarTabs } from "../utils/interfaces";
+import { error_ } from "../utils/logs.js";
+import { GuitarTabs } from "../utils/interfaces.js";
 
 export default async function fetchChords(
   url_or_response: string | GuitarTabs,
@@ -26,10 +26,10 @@ export default async function fetchChords(
     url = url_or_response.tab_url;
   }
 
-  const data = await axios
+  const data = await gotScraping
     .get(url)
-    .then((response: any) => {
-      return response.data;
+    .then((response) => {
+      return response.body;
     })
     .catch((error: any) => {
       error_("Fetch Chords", error);
@@ -39,7 +39,7 @@ export default async function fetchChords(
       };
     });
 
-  const $ = cheerio.load(data);
+  const $ = cheerio.load(data as string);
 
   let output = JSON.parse(
     $("div[class='js-store']").attr("data-content") ?? "{}",

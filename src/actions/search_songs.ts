@@ -1,7 +1,7 @@
-import CATEGORIES from "../utils/categories";
-import { CATEGORY, GuitarTabs } from "../utils/interfaces";
-import { error_, log_ } from "../utils/logs";
-import axios from "axios";
+import CATEGORIES from "../utils/categories.js";
+import { CATEGORY, GuitarTabs } from "../utils/interfaces.js";
+import { error_, log_ } from "../utils/logs.js";
+import { gotScraping } from "got-scraping";
 import * as cheerio from "cheerio";
 
 export default async function searchSong(
@@ -31,12 +31,12 @@ export default async function searchSong(
     type = `&type=${category}`;
   }
 
-  const data = await axios
+  const data = await gotScraping
     .get(
       `https://www.ultimate-guitar.com/search.php?title=${encodeURI(title)}${type}`,
     )
-    .then((response: any) => {
-      return response.data;
+    .then((response) => {
+      return response.body;
     })
     .catch((err: any) => {
       error_("Search", err);

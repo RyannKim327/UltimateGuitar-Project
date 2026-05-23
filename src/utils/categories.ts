@@ -1,4 +1,4 @@
-import { CATEGORY } from "./interfaces";
+import { CATEGORY } from "./interfaces.js";
 
 const VIDEO = 100;
 const TAB = 200;
